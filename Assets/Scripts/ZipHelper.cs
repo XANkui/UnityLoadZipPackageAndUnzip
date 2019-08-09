@@ -10,8 +10,9 @@ public class ZipHelper
     /// </summary>  
     /// <param name="zipFilePath">压缩文件路径 </param>  
     /// <param name="unZipDir">解压文件存放路径,为空时默认与压缩文件同一级目录下，跟压缩文件同名的文件夹</param>  
+    /// <param name="password">解压文件的解压密码</param>  
     /// <returns>解压是否成功</returns>  
-    public static bool UnZip(string zipFilePath, string unZipDir)
+    public static bool UnZip(string zipFilePath, string unZipDir, string password = null)
     {
         try
         {
@@ -32,6 +33,10 @@ public class ZipHelper
                 Directory.CreateDirectory(unZipDir);
             using (var s = new ZipInputStream(File.OpenRead(zipFilePath)))
             {
+                // 添加密码解压
+                if (string.IsNullOrEmpty(password) == false) {
+                    s.Password = password;
+                }
 
                 ZipEntry theEntry;
                 while ((theEntry = s.GetNextEntry()) != null)

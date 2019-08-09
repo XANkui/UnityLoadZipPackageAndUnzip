@@ -23,6 +23,18 @@ public class TestZip : MonoBehaviour
         else {
             Debug.Log("解压失败...");
         }
+
+        createZipSrcFilePath = Application.dataPath + "/" + "Test";
+        createSrcFileSaveZipPath = Application.dataPath + "/TestSlamSlope0809_003.zip";
+        isZipSuccess = ZipHelper.UnZip(createSrcFileSaveZipPath, createZipSrcFilePath, "0123");
+        if (isZipSuccess == true)
+        {
+            Debug.Log("解压成功...");
+        }
+        else
+        {
+            Debug.Log("解压失败...");
+        }
     }
 
     // Update is called once per frame

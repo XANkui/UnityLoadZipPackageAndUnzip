@@ -16,7 +16,7 @@ public class LoadZipPackageAndUnzip : MonoBehaviour
     private string targetPath = "";  // 暂时没什么作用，用来记录一些文件路径使用
 
     private string filename = "Fuyou";
-    private string url ;
+    private string url;
 
 
     
