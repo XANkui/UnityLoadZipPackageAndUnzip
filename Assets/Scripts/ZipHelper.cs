@@ -88,7 +88,8 @@ public class ZipHelper
     /// </summary>
     /// <param name="filesPath">（目录文件夹的路径（不是具体文件））</param>
     /// <param name="zipFilePath">（xxxx.zip）</param>
-    public static void CreateZipFile(string filesPath, string zipFilePath)
+    /// <param name="password">添加压缩密码</param>
+    public static void CreateZipFile(string filesPath, string zipFilePath, string password = null)
     {
         Debug.Log("CreateZipFile");
 
@@ -98,6 +99,12 @@ public class ZipHelper
         }
         ZipOutputStream stream = new ZipOutputStream(File.Create(zipFilePath));
         stream.SetLevel(0); // 压缩级别 0-9
+
+        // 添加压缩包密码
+        if (string.IsNullOrEmpty(password) == false) {
+            stream.Password = password;
+        }
+
         byte[] buffer = new byte[4096]; //缓冲区大小
         string[] filenames = Directory.GetFiles(filesPath, "*.*", SearchOption.AllDirectories);
         foreach (string file in filenames)
